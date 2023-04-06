@@ -16,5 +16,10 @@ export const userController ={
     } catch (error) {
       return reply.status(404).send({message: error})
     }
+  },
+
+  getUsers: async(request:FastifyRequest, reply: FastifyReply) => {
+    const user = await prisma.user.findMany()
+    return reply.send(user)
   }
 }
